@@ -1,8 +1,6 @@
 import random
-
 import requests
 from bs4 import BeautifulSoup
-
 
 def get_usernames(url, page_count=1):
     usernames = []
@@ -13,15 +11,14 @@ def get_usernames(url, page_count=1):
             soup = BeautifulSoup(response.text, "html.parser")
             comments = soup.find_all(class_="message-userContent")
             for comment in comments:
-                if "Katılıyorum." in comment.text:
-                    username = comment.find_previous(class_="username").text.strip()
-                    if username is None:
-                        username = ""
-                    if username not in selected_usernames:
-                        usernames.append(username)
-                        selected_usernames.add(username)
+                username_tag = comment.find_previous(class_="username")
+                if username_tag is not None:
+                    username = username_tag.text.strip()
+                    if username and username.lower() not in selected_usernames:
+                        if "katılıyorum" in comment.text.lower():  
+                            usernames.append(username)
+                            selected_usernames.add(username.lower())  
     return usernames
-
 
 def select_winner(usernames):
     if usernames:
@@ -29,7 +26,6 @@ def select_winner(usernames):
         print("Kazanan:", winner)
     else:
         print("Katılım gösteren kullanıcı bulunamadı.")
-
 
 def main():
     url = input("Çekiliş konusunun linkini girin: ")
@@ -40,7 +36,6 @@ def main():
     for username in usernames:
         print(username)
     select_winner(usernames)
-
 
 if __name__ == "__main__":
     print("wyltre tarafından yapılmıştır. github.com/wyltre")
