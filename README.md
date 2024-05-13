@@ -1,5 +1,5 @@
 Projenin tek deposudur.
-Paylaşmak yasak.Paylaşırsanız donunuza kadar alırım.
+Paylaşmak yasak.
 # Techolay Sosyal Çekiliş Script
 Belirtilen bir konudaki çekiliş konusunda katılan kullanıcıları topluyor ve bu kullanıcılar arasından rastgele bir kazanan seçiyor.
 # KURULUM VE KULLANIM
